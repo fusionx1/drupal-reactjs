@@ -1,0 +1,58 @@
+<?php
+/**
+ * @file
+ * Angular Refresh module file.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function myreactjs_menu() {
+  $items['nodes/refresh/list'] = array(
+    'title' => 'ReactJS',
+    'page callback' => 'myreactjs_build_page',
+    'access arguments' => array('access content'),
+  );
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_theme().
+ *
+ * The tpl file is where we display the content in Angular way.
+ */
+function myreactjs_theme() {
+  return array(
+    'all_articles' => array(
+      'template' => 'all-articles',
+    ),
+  );
+}
+
+
+/**
+ * Build the page.
+ */
+function myreactjs_build_page() {
+  $module_path = drupal_get_path('module', 'myreactjs');
+
+  drupal_add_js($module_path . '/js/react-0.8.0.js', array(
+      'scope' => 'footer',
+      'group' => JS_THEME,
+      'every_page' => TRUE,
+      'weight' => -2,
+  ));
+
+  drupal_add_js($module_path . '/js/JSXTransformer-0.8.0.js', array(
+      'scope' => 'footer',
+      'group' => JS_THEME,
+      'every_page' => TRUE,
+      'weight' => -2,
+  ));
+
+
+
+  return theme('all_articles');
+}

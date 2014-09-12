@@ -1,0 +1,6 @@
+name = My ReactJS
+description = Update content or content list ReactJS
+version = 7.x-1.0
+core = 7.x
+dependencies[] = angularjs
+dependencies[] = json_article
